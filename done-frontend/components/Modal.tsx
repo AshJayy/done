@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import Button from '@/app/components/Button'
+import Button from '@/components/Button'
 
 interface ModalProps {
   title?: string

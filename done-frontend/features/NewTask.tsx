@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
-import Modal from "@/app/components/Modal";
-import Button from "@/app/components/Button";
+import Modal from "@/components/Modal";
+import Button from "@/components/Button";
 import { taskEndpoints } from "@/app/lib/api/task";
 import { useRouter } from 'next/navigation';
 

@@ -1,5 +1,5 @@
-import TaskList from "@/app/features/TaskList";
-import NewTask from "@/app/features/NewTask";
+import TaskList from "@/features/TaskList";
+import NewTask from "@/features/NewTask";
 import { taskEndpoints } from "@/app/lib/api/task";
 
 export default async function Home() {

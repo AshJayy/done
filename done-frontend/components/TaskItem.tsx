@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
 import { Task } from "@/app/lib/models/task";
-import CheckBox from "@/app/components/CheckBox";
+import CheckBox from "@/components/CheckBox";
 import { taskEndpoints } from "@/app/lib/api/task";
-import Button from "@/app/components/Button";
+import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 
 interface TaskItemProps {
