@@ -42,11 +42,11 @@ const NewTask = () => {
                 onOpenChange={setOpen}
             >
                 <div className={"flex flex-col gap-4"}>
-                    <input type="text" name="title" placeholder={"Task Title"} className={"border p-2 rounded"}
+                    <input type="text" name="title" placeholder={"Task Title"} className={"border border-neutral-700 bg-black p-2 rounded focus:outline-1 focus:outline-neutral-600"}
                            value={newTask.title}
                            onChange={handleChange}
                     />
-                    <textarea name="description" placeholder={"Task Description"} className={"border p-2 rounded"}
+                    <textarea name="description" placeholder={"Task Description"} className={"border p-2 rounded border-neutral-700 bg-black focus:outline-1 focus:outline-neutral-600"}
                               value={newTask.description}
                               onChange={handleChange}
                     ></textarea>

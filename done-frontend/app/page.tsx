@@ -8,9 +8,11 @@ export default async function Home() {
 
     return (
         <main className={"p-20"}>
-            <h1>Task List</h1>
-            <TaskList tasks={tasks}/>
-            <NewTask/>
+            <div className={"flex flex-col justify-between p-8 w-fit border-2 border-neutral-700 rounded-lg bg-neutral-900 "}>
+                <h1 className={"font-bold text-2xl m-2"}>Task List</h1>
+                <TaskList tasks={tasks}/>
+                <NewTask/>
+            </div>
         </main>
     );
 }

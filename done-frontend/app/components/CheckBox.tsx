@@ -7,13 +7,13 @@ interface CheckBoxProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const CheckBox = React.forwardRef<HTMLInputElement, CheckBoxProps>((props, ref) => {
-    const { onChange, className, ...rest } = props
+    const { onChange, ...rest } = props
     return (
         <input
             type="checkbox"
             ref={ref}
             onChange={onChange}
-            className={className}
+            className={"hover:scale-130 transition-transform duration-200 cursor-pointer".trim()}
             {...rest}
         />
     )

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import Button from '@/app/components/Button'
 
 interface ModalProps {
@@ -24,18 +24,6 @@ const Modal: React.FC<ModalProps> = ({ title = 'Modal', triggerLabel = 'Open', c
     }
   }, [isControlled, onOpenChange])
 
-  const dialogRef = useRef<HTMLDivElement | null>(null)
-
-  useEffect(() => {
-    if (!isOpen) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false)
-    }
-    document.addEventListener('keydown', onKey)
-    dialogRef.current?.focus()
-    return () => document.removeEventListener('keydown', onKey)
-  }, [isOpen, setOpen])
-
   return (
     <>
       <Button onClick={() => setOpen(true)}>{triggerLabel}</Button>
@@ -46,7 +34,6 @@ const Modal: React.FC<ModalProps> = ({ title = 'Modal', triggerLabel = 'Open', c
           aria-modal="true"
           aria-label={title}
           tabIndex={-1}
-          ref={dialogRef}
           className="fixed inset-0 flex items-center justify-center z-50"
           onClick={() => setOpen(false)}
         >
@@ -56,14 +43,14 @@ const Modal: React.FC<ModalProps> = ({ title = 'Modal', triggerLabel = 'Open', c
           {/* panel */}
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative bg-white p-5 rounded-lg min-w-[280px] max-w-[90%] shadow-lg z-50"
+            className="relative p-8 rounded-lg min-w-[280px] max-w-[90%] shadow-lg z-50 bg-neutral-900 border-2 border-neutral-600"
           >
-            <div className="flex justify-between items-center mb-3">
+            <div className="flex justify-between items-center mb-8">
               <h3 className="m-0 text-lg font-medium">{title}</h3>
-              <Button onClick={() => setOpen(false)} className="ml-3">Close</Button>
+              <Button onClick={() => setOpen(false)} className="text-xs">Close</Button>
             </div>
 
-            <div>
+            <div className={"mt-4"}>
               {children}
             </div>
           </div>

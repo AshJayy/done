@@ -18,10 +18,10 @@ const TaskItem = ({task}: TaskItemProps) => {
     }
 
     return (
-        <span>
+        <div className={"flex justify-start gap-4 w-60 p-2 hover:bg-neutral-800 transition-colors duration-500 rounded-md"}>
             <CheckBox onChange={handleChange} />
-            {task.title}
-        </span>
+            <span>{task.title}</span>
+        </div>
     )
 }
 export default TaskItem

@@ -5,7 +5,7 @@ import React from 'react'
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-    const { children = 'Button', className = '', type = 'button', onClick, disabled, ...rest } = props
+    const { children = 'Button', type = 'button', onClick, disabled, ...rest } = props
 
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
         if (disabled) {
@@ -14,14 +14,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => 
         }
         onClick?.(e)
     }
-
-    const baseClasses = 'inline-flex items-center justify-center px-3 py-1.5 rounded transition active:scale-95'
-
     return (
         <button
             ref={ref}
             type={type}
-            className={`${baseClasses} ${className}`.trim()}
+            className={"inline-flex items-center justify-center px-3 py-1.5 rounded-md bg-neutral-500 hover:bg-neutral-700 transition-colors duration-500".trim()}
             onClick={handleClick}
             disabled={disabled}
             {...rest}

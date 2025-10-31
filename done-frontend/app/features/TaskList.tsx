@@ -8,7 +8,7 @@ interface TaskListProps {
 
 const TaskList = ({tasks}: TaskListProps) => {
     return (
-        <div className={"flex flex-col"}>
+        <div className={"flex flex-col justify-start min-h-60"}>
             {tasks.map(task => (
                 <TaskItem key={task.id} task={task}  />
             ))}
