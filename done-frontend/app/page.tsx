@@ -1,5 +1,6 @@
 import TaskList from "@/app/features/TaskList";
 import { mockTasks } from "@/app/data/models/task";
+import NewTask from "@/app/features/NewTask";
 
 export default function Home() {
     const tasks = mockTasks;
@@ -7,6 +8,7 @@ export default function Home() {
     <main className={"p-20"}>
       <h1>Task List</h1>
         <TaskList tasks={tasks} />
+        <NewTask />
     </main>
   );
 }
