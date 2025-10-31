@@ -27,12 +27,15 @@ const TaskItem = ({task}: TaskItemProps) => {
     }
 
     return (
-        <div className={"flex justify-between items-center w-60 p-2 hover:bg-neutral-800 transition-colors duration-500 rounded-md group"}>
-            <div className={"flex items-center gap-4"}>
+        <div className={"flex flex-col w-full p-2 hover:bg-neutral-800 transition-colors duration-500 rounded-md group"}>
+            <div className={"flex items- justify-start gap-4"}>
                 <CheckBox onChange={handleChange} />
                 <span>{task.title}</span>
             </div>
-            <Button className={"hidden group-hover:block text-xs text-neutral-500"} onClick={handleDelete}>delete</Button>
+            <div className={"hidden group-hover:flex justify-between items-center gap-4"}>
+                <p className={"text-sm"}>{task.description}</p>
+                <Button className={"text-xs text-neutral-500 hover:font-bold"} onClick={handleDelete}>delete</Button>
+            </div>
         </div>
     )
 }
