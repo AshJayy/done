@@ -4,16 +4,19 @@ import { Task } from "@/app/lib/models/task";
 import CheckBox from "@/app/components/CheckBox";
 import { taskEndpoints } from "@/app/lib/api/task";
 import Button from "@/app/components/Button";
+import { useRouter } from "next/navigation";
 
 interface TaskItemProps {
     task: Task
 }
 
 const TaskItem = ({task}: TaskItemProps) => {
+    const router = useRouter();
 
     const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log(`Delete task with id ${task.id}`);
+        await taskEndpoints.deleteTask(task.id);
+        router.refresh();
     }
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const updatedTask = await taskEndpoints.updateTask({

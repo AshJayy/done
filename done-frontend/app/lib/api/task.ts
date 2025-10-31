@@ -49,5 +49,16 @@ export const taskEndpoints = {
             throw new Error(`Failed to update task (${res.status}): ${text ?? res.statusText}`);
         }
         return await res.json() as Task;
+    },
+
+    async deleteTask(id: number): Promise<void>{
+        const res = await fetch(`${BASE_URL}/tasks/${id}`, {
+            method: 'DELETE',
+        })
+        if (!res.ok) {
+            const text = await res.text().catch(() => null);
+            throw new Error(`Failed to delete task (${res.status}): ${text ?? res.statusText}`);
+        }
+        console.log(`Task with id ${id} deleted successfully.`);
     }
 }

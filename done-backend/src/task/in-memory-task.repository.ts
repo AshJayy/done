@@ -28,8 +28,14 @@ export class InMemoryTaskRepository {
   }
 
   delete(id: number): void {
-    const idx = this.tasks.findIndex((t) => t.id === id);
+    const taskId = Number(id);
+    if (!Number.isInteger(taskId)) {
+      throw new NotFoundException('Invalid task ID');
+    }
+
+    const idx = this.tasks.findIndex((t) => t.id === taskId);
     if (idx === -1) throw new NotFoundException('Task not found');
+
     this.tasks.splice(idx, 1);
   }
 
