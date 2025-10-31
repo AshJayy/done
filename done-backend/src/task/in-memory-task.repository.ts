@@ -34,14 +34,18 @@ export class InMemoryTaskRepository {
   }
 
   update(id: number, data: UpdateTaskDto): Task {
-    const numericId = Number(id);
-    if (isNaN(numericId)) throw new NotFoundException('InvalidId');
+    const taskId = Number(id);
+    if (!Number.isInteger(taskId)) {
+      throw new NotFoundException('Invalid task ID');
+    }
 
-    this.logger.debug(`Updating task with ID ${id}`);
+    const task = this.tasks.find((t) => t.id === taskId);
+    if (!task) {
+      throw new NotFoundException(`Task with ID ${taskId} not found`);
+    }
 
-    const idx = this.tasks.findIndex((t) => t.id === numericId);
-    if (idx === -1) throw new NotFoundException('Task not found');
-    this.tasks[idx] = { ...this.tasks[idx], ...data };
-    return this.tasks[idx];
+    Object.assign(task, data);
+    this.logger.debug(`Task ${taskId} updated`, { updatedTask: task });
+    return task;
   }
 }
