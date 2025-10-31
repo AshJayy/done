@@ -3,7 +3,6 @@
 
 A minimal task tracker demo app with a NestJS backend and a Next.js frontend.
 
-
 ## How to run
 
 Prerequisites: Node.js (16+ recommended) and npm or yarn.
