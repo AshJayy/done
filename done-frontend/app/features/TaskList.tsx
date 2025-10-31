@@ -1,5 +1,5 @@
 import React from 'react'
-import { Task } from "@/app/data/models/task";
+import { Task } from "@/app/lib/models/task";
 import TaskItem from "@/app/components/TaskItem";
 
 interface TaskListProps {

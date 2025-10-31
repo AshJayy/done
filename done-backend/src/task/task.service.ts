@@ -1,42 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { InMemoryTaskRepository } from './in-memory-task.repository';
 import { Task } from './entity/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TaskService {
-  private tasks: Task[] = [];
+  constructor(private readonly repo: InMemoryTaskRepository) {}
 
   getTasks(): Task[] {
-    return this.tasks;
+    return this.repo.findAll();
   }
 
   createTask(data: CreateTaskDto): Task {
-    const newTask: Task = {
-      id: this.tasks.length + 1,
-      title: data.title,
-      description: data.description || '',
-      isCompleted: false,
-    };
-    this.tasks.push(newTask);
-    return newTask;
+    return this.repo.create(data);
   }
 
   deleteTask(id: number): void {
-    const taskIndex = this.tasks.findIndex((task) => task.id === id);
-    if (taskIndex !== -1) {
-      this.tasks.splice(taskIndex, 1);
-    } else {
-      throw new Error('Task not found');
-    }
+    this.repo.delete(id);
   }
 
-  updateTask(id: number, data: UpdateTaskDto): void {
-    const taskIndex = this.tasks.findIndex((task) => task.id === id);
-    if (taskIndex !== -1) {
-      this.tasks[taskIndex] = { ...this.tasks[taskIndex], ...data };
-    } else {
-      throw new Error('Task not found');
-    }
+  updateTask(id: number, data: UpdateTaskDto): Task {
+    return this.repo.update(id, data);
   }
 }

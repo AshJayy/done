@@ -1,14 +1,16 @@
 import TaskList from "@/app/features/TaskList";
-import { mockTasks } from "@/app/data/models/task";
 import NewTask from "@/app/features/NewTask";
+import { taskEndpoints } from "@/app/lib/api/task";
 
-export default function Home() {
-    const tasks = mockTasks;
-  return (
-    <main className={"p-20"}>
-      <h1>Task List</h1>
-        <TaskList tasks={tasks} />
-        <NewTask />
-    </main>
-  );
+export default async function Home() {
+
+    const tasks = await taskEndpoints.getTasks();
+
+    return (
+        <main className={"p-20"}>
+            <h1>Task List</h1>
+            <TaskList tasks={tasks}/>
+            <NewTask/>
+        </main>
+    );
 }
