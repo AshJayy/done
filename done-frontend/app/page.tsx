@@ -1,9 +1,12 @@
-import Image from "next/image";
+import TaskList from "@/app/features/TaskList";
+import { mockTasks } from "@/app/data/models/task";
 
 export default function Home() {
+    const tasks = mockTasks;
   return (
-    <main>
-      Hello Hello
+    <main className={"p-20"}>
+      <h1>Task List</h1>
+        <TaskList tasks={tasks} />
     </main>
   );
 }
