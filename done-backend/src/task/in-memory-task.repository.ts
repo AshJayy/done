@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { Task } from './entity/task.entity';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { UpdateTaskDto } from './dto/update-task.dto';
@@ -7,6 +7,7 @@ import { initialTasks } from './mocks/task.mock';
 @Injectable()
 export class InMemoryTaskRepository {
   private tasks: Task[] = [...initialTasks];
+  private readonly logger = new Logger(InMemoryTaskRepository.name);
 
   findAll(): Task[] {
     return this.tasks;
@@ -22,6 +23,7 @@ export class InMemoryTaskRepository {
       isCompleted: false,
     };
     this.tasks.push(newTask);
+    console.log(`Task created with ID ${this.tasks[this.tasks.length - 1].id}`);
     return newTask;
   }
 
@@ -32,7 +34,12 @@ export class InMemoryTaskRepository {
   }
 
   update(id: number, data: UpdateTaskDto): Task {
-    const idx = this.tasks.findIndex((t) => t.id === id);
+    const numericId = Number(id);
+    if (isNaN(numericId)) throw new NotFoundException('InvalidId');
+
+    this.logger.debug(`Updating task with ID ${id}`);
+
+    const idx = this.tasks.findIndex((t) => t.id === numericId);
     if (idx === -1) throw new NotFoundException('Task not found');
     this.tasks[idx] = { ...this.tasks[idx], ...data };
     return this.tasks[idx];

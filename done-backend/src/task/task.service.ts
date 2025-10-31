@@ -25,6 +25,7 @@ export class TaskService {
   }
 
   updateTask(id: number, data: UpdateTaskDto): Task {
+    this.logger.debug(`Updating task with ID ${id}`);
     return this.repo.update(id, data);
   }
 }
